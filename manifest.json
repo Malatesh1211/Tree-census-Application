@@ -1,0 +1,20 @@
+{
+    "name": "Tree Census App",
+    "short_name": "TreeCensus",
+    "start_url": "https://malatesh1211.github.io/Tree-census-Application/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "icons": [
+        {
+            "src": "icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
