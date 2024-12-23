@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Census Application</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-width: 50px;
+            height: auto;
+        }
+
+        .header-title {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        form {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer img {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="DSCL_logo.png" alt="Logo 1" class="logo">
+        <h1 class="header-title">Tree Census Application</h1>
+        <img src="forest logo.jpeg" alt="Logo 2" class="logo">
+    </header>
+
+    <form id="treeForm">
+        <label for="TreeName">Tree Name</label>
+        <input type="text" id="TreeName" name="TreeName" required>
+
+        <label for="girth">Girth (cm)</label>
+        <input type="number" id="girth" name="Girth" required>
+
+        <label for="height">Height (m)</label>
+        <input type="number" id="height" name="Height" required>
+
+        <label for="landmark">Landmark</label>
+        <input type="text" id="landmark" name="Landmark" required>
+
+        <button type="button" onclick="getLocation()">Get Geolocation</button>
+        <p id="geoCoordinates"></p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <footer>
+        <p>&copy; 2024 Tree Census Application Designed & Developed By</p>
+        <img src="teralogo.png" alt="Logo">
+    </footer>
+
+    <script>
+        function generateUniqueId() {
+            const now = new Date();
+            return `T${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}${now.getHours().toString().padStart(2, "0")}${now.getMinutes().toString().padStart(2, "0")}${now.getSeconds().toString().padStart(2, "0")}`;
+        }
+
+        function getLocation() {
+            const geoCoordinatesElement = document.getElementById("geoCoordinates");
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    geoCoordinatesElement.textContent = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+                    geoCoordinatesElement.dataset.lat = position.coords.latitude;
+                    geoCoordinatesElement.dataset.lon = position.coords.longitude;
+                }, () => {
+                    geoCoordinatesElement.textContent = "Unable to fetch location.";
+                });
+            } else {
+                geoCoordinatesElement.textContent = "Geolocation is not supported by your browser.";
+            }
+        }
+
+        document.getElementById("treeForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const uniqueId = generateUniqueId();
+
+            const treeData = {
+                treeName: document.getElementById("TreeName").value,
+                uniqueId,
+                girth: document.getElementById("girth").value,
+                height: document.getElementById("height").value,
+                landmark: document.getElementById("landmark").value,
+                geoCoordinates: document.getElementById("geoCoordinates").textContent || "N/A"
+            };
+
+            // Save data to localStorage
+            const storedData = JSON.parse(localStorage.getItem("treeData")) || [];
+            storedData.push(treeData);
+            localStorage.setItem("treeData", JSON.stringify(storedData));
+
+            // Redirect to report page
+            window.location.href = "report.html";
+        });
+    </script>
+</body>
+</html>
