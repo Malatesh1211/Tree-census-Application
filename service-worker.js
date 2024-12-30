@@ -1,6 +1,7 @@
 const CACHE_NAME = "tree-census-cache";
 const urlsToCache = [
     "index.html",
+    "main.js",
     "manifest.json",
     "style.css",
     "app.js",
@@ -16,6 +17,7 @@ self.addEventListener('install', (event) => {
             return cache.addAll([
                 '/',
                 '/index.html',
+                '/main.js',
                 '/styles.css',
                 '/script.js',
                 '/icon-192x192.png',
