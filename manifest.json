@@ -3,7 +3,7 @@
    "short_name": "TreeCensus",
    "id": "/tree-census",
    "description": "A progressive web application for managing tree census data.",
-   "start_url": "/",
+   "start_url": "https://malatesh1211.github.io/Tree-census-Application/",
    "display": "standalone",
    "display_override": ["window-controls-overlay"],
    "background_color": "#ffffff",
