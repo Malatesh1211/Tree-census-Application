@@ -33,28 +33,41 @@
            "url": "/?data=%s"
        }
    ],
-   "screenshots": [
+   "share_target": {
+       "action": "/share",
+       "method": "POST",
+       "enctype": "multipart/form-data",
+       "params": {
+           "title": "title",
+           "text": "text",
+           "url": "url"
+       }
+   },
+   "shortcuts": [
        {
-           "src": "screenshot1.png",
-           "sizes": "640x480",
-           "type": "image/png"
-       },
-       {
-           "src": "screenshot2.png",
-           "sizes": "1280x720",
-           "type": "image/png"
+           "name": "Add Tree",
+           "short_name": "Add",
+           "description": "Add a new tree to the census",
+           "url": "/add-tree",
+           "icons": [{ "src": "icon-add.png", "sizes": "192x192", "type": "image/png" }]
        }
    ],
-   "icons": [
+   "categories": ["utilities", "productivity"],
+   "dir": "ltr",
+   "iarc_rating_id": "e12345",
+   "lang": "en-US",
+   "prefer_related_applications": false,
+   "related_applications": [
        {
-           "src": "icon-192x192.png",
-           "sizes": "192x192",
-           "type": "image/png"
-       },
+           "platform": "play",
+           "url": "https://play.google.com/store/apps/details?id=com.treecensus",
+           "id": "com.treecensus"
+       }
+   ],
+   "scope": "/",
+   "scope_extensions": [
        {
-           "src": "icon-512x512.png",
-           "sizes": "512x512",
-           "type": "image/png"
+           "origin": "https://example.com"
        }
    ]
 }
