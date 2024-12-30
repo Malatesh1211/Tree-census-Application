@@ -1,11 +1,11 @@
 const CACHE_NAME = "tree-census-cache";
 const urlsToCache = [
-    "/tree/Treecensus.html",
-    "/tree/manifest.json",
-    "/tree/style.css",
-    "/tree/app.js",
-    "/tree/icons/icon-192x192.png",
-    "/tree/icons/icon-512x512.png"
+    "index.html",
+    "manifest.json",
+    "style.css",
+    "app.js",
+    "icon-192x192.png",
+    "icon-512x512.png"
 ];
 
 self.addEventListener("install", (event) => {
