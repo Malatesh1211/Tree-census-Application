@@ -5,12 +5,34 @@
    "description": "A progressive web application for managing tree census data.",
    "start_url": "/",
    "display": "standalone",
+   "display_override": ["window-controls-overlay"],
    "background_color": "#ffffff",
    "theme_color": "#4CAF50",
    "orientation": "portrait-primary",
    "launch_handler": {
        "client_mode": "navigate-existing"
    },
+   "edge_side_panel": {
+       "preferred_width": 400
+   },
+   "file_handlers": {
+       "files": [
+           {
+               "action": "/open-file",
+               "accept": {
+                   "application/json": [".json"],
+                   "text/csv": [".csv"]
+               }
+           }
+       ]
+   },
+   "handle_links": "preferred",
+   "protocol_handlers": [
+       {
+           "protocol": "web+treecensus",
+           "url": "/?data=%s"
+       }
+   ],
    "screenshots": [
        {
            "src": "screenshot1.png",
