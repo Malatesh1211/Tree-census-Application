@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree Census Application</title>
-    <link rel="manifest" href="manifest.json">
     <style>
         /* General styles */
         body {
@@ -107,7 +106,7 @@
 
     <form id="treeForm">
         <label for="TreeName">Tree Name</label>
-        <input type="text" id="TreeName" name="TreeName" required>
+        <input type="text" id="TreeName" name="TreeName" required pattern="^[a-zA-Z\s]+$" title="Tree name should only contain letters">
 
         <label for="girth">Girth (cm)</label>
         <input type="number" id="girth" name="Girth" required>
@@ -130,6 +129,12 @@
     </footer>
 
     <script>
+        function capitalizeWords(input) {
+            return input.replace(/\b\w/g, function(char) {
+                return char.toUpperCase();
+            });
+        }
+
         function generateUniqueId() {
             const now = new Date();
             return `T${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}${now.getHours().toString().padStart(2, "0")}${now.getMinutes().toString().padStart(2, "0")}${now.getSeconds().toString().padStart(2, "0")}`;
@@ -149,6 +154,14 @@
                 geoCoordinatesElement.textContent = "Geolocation is not supported by your browser.";
             }
         }
+
+        document.getElementById("TreeName").addEventListener("input", function(event) {
+            this.value = capitalizeWords(this.value.replace(/[^a-zA-Z\s]/g, ""));
+        });
+
+        document.getElementById("landmark").addEventListener("input", function(event) {
+            this.value = capitalizeWords(this.value);
+        });
 
         document.getElementById("treeForm").addEventListener("submit", function(event) {
             event.preventDefault();
